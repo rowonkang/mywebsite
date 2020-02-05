@@ -9,6 +9,7 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.index, name='index'),
     path('post/<int:pk>/', views.PostDetailView.as_view(), name='post'),
+    path('post/create/', views.PostCreate.as_view(), name='post_create'),
 ]
 
 # print("post.get_absolute_url : ", post.get_absolute_url)

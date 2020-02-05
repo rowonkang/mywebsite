@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from blog.models import Category, Post
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin  # 로그인 사용자만 글 작성하게 하기.
+from django.views.generic.edit import CreateView  #
 
 from django.conf import settings
 
@@ -34,9 +36,11 @@ def index(request):
 class PostDetailView(generic.DetailView):
     model = Post
 
-
-
 # def single(request):
 #     context = {
 #     }
 #     return render(request, 'blog/single.html', context)
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'title_image', 'content', 'category']
